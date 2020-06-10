@@ -58,15 +58,28 @@ body {
   top: 25px;
   right: 25px;
   border: 1px solid grey;
+  margin-right: 10px;
   padding: 5px 10px;
   background-color: lightseagreen;
 }
+
+.save-button2 {
+  position: absolute;
+  top: 25px;
+  right: 200px;
+  border: 1px solid grey;
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: lightseagreen;
+}
+
 .save-button:hover {
   background-color: green;
   color: white;
 }
 
 .home-button {
+  margin-right: 5px;
   padding: 5px 10px;
   background-color: lightskyblue;
 }

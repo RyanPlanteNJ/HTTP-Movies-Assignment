@@ -1,7 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const MovieCard = props => {
-  const { title, director, metascore, stars } = props.movie;
+  const { title, director, metascore, stars, id } = props.movie;
+  const movie = props.movie
+
+  const handleDelete = () => {
+    axios
+      .delete(`http://localhost:5000/api/movies/${id}`)
+      .then(res => {
+        console.log('delete res', res);
+        window.location = '/';
+      })
+      .catch(err =>
+        console.error("Movie.js: handleDelete: err: ", err.message, err.response)
+      );
+  };
+
   return (
     <div className="movie-card">
       <h2>{title}</h2>
@@ -18,6 +34,12 @@ const MovieCard = props => {
           {star}
         </div>
       ))}
+      <div>
+        <button className="save-button"><Link to = {{pathname:`/update-movie/${id}`, movie: movie}}>Update Movie Information</Link></button>
+      </div>
+      <div>
+        <button className="save-button2" onClick={()=> handleDelete()}>Delete</button>
+      </div>
     </div>
   );
 };
