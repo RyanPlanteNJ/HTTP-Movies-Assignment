@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 import MovieCard from "./MovieCard";
 
-function Movie({ addToSavedList }) {
+function Movie({ addToSavedList }, props) {
   const [movie, setMovie] = useState(null);
-  const params = useParams();
+  const match = useRouteMatch();
 
   const fetchMovie = (id) => {
     axios
       .get(`http://localhost:5000/api/movies/${id}`)
-      .then((res) => setMovie(res.data))
+      .then((res) => setMovie(res.data)) 
       .catch((err) => console.log(err.response));
   };
 
@@ -19,8 +19,8 @@ function Movie({ addToSavedList }) {
   };
 
   useEffect(() => {
-    fetchMovie(params.id);
-  }, [params.id]);
+    fetchMovie(match.params.id);
+  }, [match.params.id]);
 
   if (!movie) {
     return <div>Loading movie information...</div>;
